@@ -1,9 +1,12 @@
 Build.PL
 Changes
 lib/NGS/Tools/SnpEFF.pm
+lib/NGS/Tools/SnpEff/Roles/Annotate.pm
 MANIFEST			This list of files
 README
-t/00-load.t
-t/manifest.t
-t/pod-coverage.t
-t/pod.t
+t/00-annotate.t
+t/example/test.vcf
+t/example/test.vcf.idx
+t/output.ann.vcf
+t/snpEff_genes.txt
+t/snpEff_summary.html
