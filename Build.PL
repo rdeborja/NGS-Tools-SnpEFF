@@ -7,6 +7,7 @@ my $builder = Module::Build->new(
     module_name         => 'NGS::Tools::SnpEFF',
     license             => 'artistic_2',
     dist_author         => q{Richard J. de Borja <richard.deborja@sickkids.ca>},
+    dist_abstract       => 'Perl package wrapper for the SnpEff program',
     dist_version_from   => 'lib/NGS/Tools/SnpEFF.pm',
     release_status      => 'stable',
     configure_requires => {
