@@ -1,0 +1,43 @@
+{
+   "abstract" : "Perl package wrapper for the SnpEff program",
+   "author" : [
+      "Richard J. de Borja <richard.deborja@sickkids.ca>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.133380",
+   "license" : [
+      "artistic_2"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "NGS-Tools-SnpEFF",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "NGS::Tools::SnpEFF" : {
+         "file" : "lib/NGS/Tools/SnpEFF.pm"
+      },
+      "NGS::Tools::SnpEFF::Roles::Annotate" : {
+         "file" : "lib/NGS/Tools/SnpEFF/Roles/Annotate.pm"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://opensource.org/licenses/artistic-license-2.0.php"
+      ]
+   },
+   "version" : "0"
+}

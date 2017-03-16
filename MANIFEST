@@ -2,8 +2,10 @@ Build.PL
 Changes
 lib/NGS/Tools/SnpEFF.pm
 lib/NGS/Tools/SnpEFF/Roles/Annotate.pm
-lib/NGS/Tools/SnpEff/Roles/Annotate.pm
+Makefile.PL
 MANIFEST			This list of files
+META.json
+META.yml
 README
 t/00-annotate.t
 t/01-convert_vcf.t
