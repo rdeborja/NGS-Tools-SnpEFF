@@ -7,6 +7,8 @@ use warnings FATAL => 'all';
 use namespace::autoclean;
 use autodie;
 use File::Basename;
+use Vcf;
+use Data::Dumper;
 
 =head1 NAME
 
@@ -135,7 +137,71 @@ sub annotate_vcf {
 
     my %return_values = (
         cmd => $cmd,
-        output => $output
+        output => $output,
+        genes => "snpEff_genes.txt",
+        summary => "snpEff_summary.html"
+        );
+
+    return(\%return_values);
+    }
+
+=head2 $obj->convert_vcf_to_table()
+
+Convert the annotated VCF file from snpEff to a table.
+
+=head3 Arguments:
+
+=over 2
+
+=item * vcf: full path to the VCF file containing annotations from snpEff
+
+=back
+
+=cut
+
+sub convert_vcf_to_table {
+    my $self = shift;
+    my %args = validated_hash(
+        \@_,
+        vcf => {
+            isa         => 'Str',
+            required    => 1
+            },
+        output => {
+            isa         => 'Str',
+            required    => 0,
+            default     => ''
+            }
+        );
+
+    my $output;
+    if ($args{'output'} eq '') {
+        $output = join('.',
+            File::Basename::basename($args{'vcf'}, qw( .vcf )),
+            'txt'
+            );
+        }
+    else {
+        $output = $args{'output'};
+        }
+
+    # use vcftools to handle VCF files
+    my $vcf = Vcf->new(
+        file => $args{'vcf'}
+        );
+    my $header = $vcf->parse_header();
+    my @samples = $vcf->get_samples();
+    my $tumour_name = $vcf->get_header_line(key => 'SAMPLE')->[0]->{'TUMOR'}->{'SampleName'};
+    my $normal_name = $vcf->get_header_line(key => 'SAMPLE')->[0]->{'NORMAL'}->{'SampleName'};    
+
+    while(my $vcf_data = $vcf->next_data_hash()) {
+        my @_ann = split('\|', $vcf_data->{'INFO'}->{'ANN'});
+        print Dumper(\@_ann);
+        }
+
+    my %return_values = (
+        normal => $normal_name,
+        tumour => $tumour_name
         );
 
     return(\%return_values);
