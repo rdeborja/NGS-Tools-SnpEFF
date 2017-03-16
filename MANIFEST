@@ -1,10 +1,14 @@
 Build.PL
 Changes
 lib/NGS/Tools/SnpEFF.pm
+lib/NGS/Tools/SnpEFF/Roles/Annotate.pm
 lib/NGS/Tools/SnpEff/Roles/Annotate.pm
 MANIFEST			This list of files
 README
 t/00-annotate.t
+t/01-convert_vcf.t
+t/example/output.ann.expected.vcf
+t/example/snpEff_genes_expected.txt
 t/example/test.vcf
 t/example/test.vcf.idx
 t/output.ann.vcf
