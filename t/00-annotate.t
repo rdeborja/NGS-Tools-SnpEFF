@@ -1,4 +1,4 @@
-use Test::More tests => 2;
+use Test::More tests => 4;
 use Test::Moose;
 use Test::Exception;
 use MooseX::ClassCompositor;
@@ -41,5 +41,24 @@ my $expected_command = join(' ',
     '>',
     'output.ann.vcf'
     );
-is($ann->{'cmd'}, $expected_command, "Command matches expected");
 print Dumper($ann);
+
+# check the command
+is($ann->{'cmd'}, $expected_command, "Command matches expected");
+
+# run the command to generate the desired output
+system($ann->{'cmd'});
+
+# compare the output from the command with the expected output
+my $expected_snpeff_vcf = "$Bin/example/output.ann.expected.vcf";
+compare_ok($ann->{'output'}, $expected_snpeff_vcf, "VCF file matches expected output");
+my $expected_genes = "$Bin/example/snpEff_genes_expected.txt";
+compare_ok($ann->{'genes'}, $expected_genes, "Gene file matches expected");
+
+# can't compare the summary html file as the data prevents an exact replica
+
+# clean up files
+unlink($ann->{'output'});
+unlink($ann->{'genes'});
+unlink($ann->{'summary'});
+
