@@ -11,6 +11,3 @@ t/example/output.ann.expected.vcf
 t/example/snpEff_genes_expected.txt
 t/example/test.vcf
 t/example/test.vcf.idx
-t/output.ann.vcf
-t/snpEff_genes.txt
-t/snpEff_summary.html
